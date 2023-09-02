@@ -1,0 +1,71 @@
+/* style.css */
+
+/* Thiết lập font và căn giữa tiêu đề */
+h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Thiết lập khung danh sách học phần và CTDT */
+#hoc-phan,
+#ctdt {
+  border: 2px solid #ddd;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  min-height: 200px; /* Đảm bảo khung có chiều cao tối thiểu để kéo và thả hoạt động tốt */
+}
+
+/* Thiết lập tiêu đề của khung */
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Thiết lập danh sách học phần */
+.hoc-phan-item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Định dạng danh sách học phần khi kéo thả */
+.hoc-phan-item.dragging {
+  opacity: 0.7;
+  background-color: #ddd;
+}
+
+.ctdt-item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Thêm CSS cho học phần khi được kéo */
+.hoc-phan-item.dragging {
+  background-color: #f0f0f0; /* Màu nền khi kéo */
+  border: 2px dashed #333; /* Khung xung quanh khi kéo */
+}
+
+/* CSS cho các phần tử module có khả năng kéo và thả */
+.module-item {
+  background-color: #f0f0f0; /* Màu nền khi kéo */
+  border: 2px dashed #333; /* Khung xung quanh khi kéo */
+  padding: 8px;
+  margin: 8px 0;
+  cursor: grab; /* Con trỏ kéo và thả */
+}
+
+/* Hiệu ứng khi kéo và thả */
+.module-item:active {
+  background-color: #ccc; /* Màu nền khi đang kéo và thả */
+}
+
