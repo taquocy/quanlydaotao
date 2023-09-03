@@ -69,3 +69,65 @@ h2 {
   background-color: #ccc; /* Màu nền khi đang kéo và thả */
 }
 
+/* CSS cho form */
+.hoc-phan-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: #fff;
+}
+
+/* CSS cho nút "Tạo mới học phần" */
+#btnCreateHocPhan {
+  border: 2px solid #3498db; /* Border với màu xanh dương */
+  padding: 10px 20px; /* Khoảng cách padding bên trong nút */
+  background-color: #3498db; /* Màu nền của nút */
+  color: #fff; /* Màu chữ */
+  border-radius: 5px; /* Bo góc nút */
+  cursor: pointer; /* Biến con trỏ thành bàn tay khi trỏ vào nút */
+  transition: background-color 0.3s ease; /* Hiệu ứng màu nền khi hover */
+}
+#btnCreateHocPhan:hover {
+  background-color: #2980b9; /* Màu nền khi hover */
+}
+
+/* CSS cho các trường nhập liệu trong form */
+#createHocPhanForm input[type="text"],
+#createHocPhanForm input[type="number"] {
+  border: 2px solid #ccc; /* Border cho các trường nhập liệu */
+  padding: 10px; /* Khoảng cách padding bên trong trường */
+  border-radius: 5px; /* Bo góc trường */
+  width: 100%; /* Độ rộng 100% */
+  margin-bottom: 10px; /* Khoảng cách giữa các trường */
+}
+
+/* CSS cho nút "Lưu" */
+#btnSave {
+  border: 2px solid #27ae60; /* Border với màu xanh lá cây */
+  padding: 10px 20px; /* Khoảng cách padding bên trong nút */
+  background-color: #27ae60; /* Màu nền của nút */
+  color: #fff; /* Màu chữ */
+  border-radius: 5px; /* Bo góc nút */
+  cursor: pointer; /* Biến con trỏ thành bàn tay khi trỏ vào nút */
+  transition: background-color 0.3s ease; /* Hiệu ứng màu nền khi hover */
+}
+
+#btnSave:hover {
+  background-color: #219f4a; /* Màu nền khi hover */
+}
+
+/* CSS cho nút "Hủy" */
+#btnCancel {
+  border: 2px solid #e74c3c; /* Border với màu đỏ */
+  padding: 10px 20px; /* Khoảng cách padding bên trong nút */
+  background-color: #e74c3c; /* Màu nền của nút */
+  color: #fff; /* Màu chữ */
+  border-radius: 5px; /* Bo góc nút */
+  cursor: pointer; /* Biến con trỏ thành bàn tay khi trỏ vào nút */
+  transition: background-color 0.3s ease; /* Hiệu ứng màu nền khi hover */
+}
+
+#btnCancel:hover {
+  background-color: #d63a2f; /* Màu nền khi hover */
+}

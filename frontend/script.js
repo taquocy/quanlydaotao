@@ -4,6 +4,7 @@ const host = 'http://127.0.0.1:4000';
 // Sử dụng sự kiện DOMContentLoaded để gọi hàm fetchAndDisplayHocPhan
 document.addEventListener('DOMContentLoaded', function () {
 
+    initEvent()
     fetchAndDisplayCtdt();
     // Load hoc phan ko thuoc module nao
     fetchAndDisplayUnselectedHocPhan()
@@ -11,6 +12,63 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+function initEvent() {
+    // Lấy các phần tử DOM
+    const btnCreateHocPhan = document.getElementById('btnCreateHocPhan');
+    const hocPhanForm = document.getElementById('hocPhanForm');
+    // Lấy nút "Hủy"
+    const btnCancel = document.getElementById('btnCancel');
+    // Lấy nút "Lưu"
+    const btnSave = document.getElementById('btnSave');
+
+    // Sự kiện click trên nút "Tạo mới học phần"
+    btnCreateHocPhan.addEventListener('click', () => {
+        hocPhanForm.classList.remove('hidden');
+    });
+
+    // Sự kiện click trên nút "Hủy"
+    btnCancel.addEventListener('click', () => {
+        // Ẩn form khi nút "Hủy" được nhấn
+        hocPhanForm.classList.add('hidden');
+    });
+
+    
+    // Sự kiện click trên nút "Lưu"
+    btnSave.addEventListener('click', () => {
+        // Lấy giá trị từ các trường dữ liệu
+        const maHocPhanInput = document.getElementById('maHocPhan');
+        const tenHocPhanInput = document.getElementById('tenHocPhan');
+        const soTinChiInput = document.getElementById('soTinChi');
+        const maHocPhan = maHocPhanInput.value;
+        const tenHocPhan = tenHocPhanInput.value;
+        const soTinChi = soTinChiInput.value;
+
+        // Gửi dữ liệu lên server thông qua API (sử dụng fetch hoặc Axios)
+        // Đảm bảo thay đổi URL API và tùy chỉnh phương thức, tiêu đề và dữ liệu gửi theo cách phù hợp
+        fetch(`${host}/api/createHocPhan`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ maHocPhan, tenHocPhan, soTinChi }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Xử lý kết quả từ server (có thể là hiển thị thông báo thành công hoặc làm gì đó khác)
+                console.log(data);
+                // Ẩn form sau khi gửi dữ liệu
+                hocPhanForm.classList.add('hidden');
+                // reload lại
+                fetchAndDisplayUnselectedHocPhan();
+            })
+            .catch((error) => {
+                console.error('Lỗi khi tạo mới học phần:', error);
+            });
+    });
+
+
+
+}
 
 
 function getDataOfCTDT() {
@@ -202,14 +260,14 @@ function drop(event) {
         if (data.includes('module')) {
             let idModule = data.substring("module-".length);
             let idModuleValue = parseInt(idModule);
-            if(target.id.includes('section-')){
+            if (target.id.includes('section-')) {
                 let sectionID = target.id.substring("section-".length)
                 let sectionIDValue = parseInt(sectionID);
                 updateModuleVaoSection(idModuleValue, sectionIDValue, () => {
                     target.appendChild(element);
                 })
             }
-           
+
         }
     } else if (target.id === "module" || target.parentElement.id === "module" || target.id.includes("module-")) {
         // Kéo và thả từ cột CTDT sang cột Module
@@ -228,10 +286,10 @@ function drop(event) {
             let idModuleValue = parseInt(idModule);
             updateModuleVaoSection(idModuleValue, -1, () => {
                 target.appendChild(element);
-            })                       
+            })
         }
-        
-        
+
+
         // Kéo và thả từ cột Hoc phan
     } else if (target.id === 'hoc-phan') {
         if (data.includes('hoc-phan')) {

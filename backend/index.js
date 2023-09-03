@@ -169,6 +169,22 @@ app.put('/api/updateModule/:id', async (req, res) => {
   });
 });
 
+app.post('/api/createHocPhan', (req, res) => {
+  const { maHocPhan, tenHocPhan, soTinChi } = req.body;
+
+  // Kiểm tra dữ liệu và thực hiện tạo mới học phần trong cơ sở dữ liệu
+  const sql = 'INSERT INTO HocPhan (MaHocPhan, TenHocPhan, SoTinChi) VALUES (?, ?, ?)';
+  db.query(sql, [maHocPhan, tenHocPhan, soTinChi], (err, result) => {
+    if (err) {
+      console.error('Lỗi khi tạo mới học phần:', err);
+      res.status(500).json({ error: 'Lỗi khi tạo mới học phần' });
+    } else {
+      console.log('Học phần đã được tạo mới');
+      res.json({ message: 'Học phần đã được tạo mới' });
+    }
+  });
+});
+
 
 app.listen(port, () => {
   console.log(`Server đang lắng nghe tại http://localhost:${port}`);
