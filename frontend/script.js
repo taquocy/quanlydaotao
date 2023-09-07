@@ -5,6 +5,8 @@ const host = 'http://127.0.0.1:4000';
 document.addEventListener('DOMContentLoaded', function () {
 
     initEvent()
+    initEventForFormAddModule()
+    initEventForFormSection()
     fetchAndDisplayCtdt();
     // Load hoc phan ko thuoc module nao
     fetchAndDisplayUnselectedHocPhan()
@@ -32,7 +34,7 @@ function initEvent() {
         hocPhanForm.classList.add('hidden');
     });
 
-    
+
     // Sự kiện click trên nút "Lưu"
     btnSave.addEventListener('click', () => {
         // Lấy giá trị từ các trường dữ liệu
@@ -70,6 +72,92 @@ function initEvent() {
 
 }
 
+function initEventForFormAddModule() {
+    // Lấy các phần tử DOM
+    const addModuleButton = document.getElementById('addModuleButton');
+    const moduleForm = document.getElementById('moduleForm');
+    const cancelButton = document.getElementById('cancelButton');
+
+    // Sự kiện click vào nút "Thêm Module"
+    addModuleButton.addEventListener('click', () => {
+        moduleForm.style.display = 'block'; // Hiển thị form
+    });
+
+    // Sự kiện click vào nút "Hủy"
+    cancelButton.addEventListener('click', () => {
+        moduleForm.style.display = 'none'; // Ẩn form
+    });
+    // Lấy form và các trường dữ liệu
+    const createModuleForm = document.getElementById('createModuleForm');
+    const tenModuleInput = document.getElementById('tenModule');
+
+    // Lấy nút Lưu
+    const saveButton = document.getElementById('saveButton');
+
+    // Sự kiện click nút Lưu
+    saveButton.addEventListener('click', () => {
+        // Lấy giá trị từ các trường dữ liệu
+        const tenModule = tenModuleInput.value;
+
+        // Gửi dữ liệu lên server thông qua API (sử dụng fetch hoặc Axios)
+        // Đảm bảo thay đổi URL API và tùy chỉnh phương thức, tiêu đề và dữ liệu gửi theo cách phù hợp
+        fetch(`${host}/api/createModule`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ tenModule }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // Xử lý kết quả từ server (có thể là hiển thị thông báo thành công hoặc làm gì đó khác)
+                console.log(data);
+
+                // Đóng form sau khi gửi dữ liệu thành công
+                createModuleForm.classList.add('hidden');
+
+                // Sau khi tạo mới module, bạn có thể thực hiện các hành động cần thiết, ví dụ: cập nhật danh sách module.
+                fetchAndDisplayUnselectedModules()
+            })
+            .catch((error) => {
+                console.error('Lỗi khi tạo mới module:', error);
+            });
+    });
+
+}
+
+function initEventForFormSection() {
+    // Lấy các phần tử HTML
+    debugger
+    const addSectionButton = document.getElementById('addSectionButton');
+    const createSectionForm = document.getElementById('createSectionForm');
+    const sectionForm = document.getElementById('sectionForm');
+    const cancelButton = document.getElementById('cancelButtonSection');
+
+    // Sự kiện khi nút "Thêm mới Section" được bấm
+    addSectionButton.addEventListener('click', () => {
+        debugger
+        sectionForm.style.display = 'block'; // Hiển thị form
+        
+    });
+
+    // Sự kiện khi nút "Hủy" được bấm
+    cancelButton.addEventListener('click', () => {
+        sectionForm.style.display = 'none'; // Hiển thị form
+    });
+
+    // Sự kiện khi form "Tạo mới Section" được gửi đi (tùy theo logic của bạn)
+    sectionForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Xử lý dữ liệu và gửi đi thông qua API (sử dụng fetch hoặc Axios)
+        // Đảm bảo cập nhật URL API và tùy chỉnh phương thức, tiêu đề và dữ liệu gửi đi theo cách phù hợp
+
+        // Sau khi xử lý xong, có thể đóng form bằng cách:
+        sectionForm.style.display = 'none'; // Hiển thị form
+    });
+
+}
 
 function getDataOfCTDT() {
     // Lấy tham chiếu đến combobox
@@ -115,7 +203,7 @@ function fetchAndDisplayPhanDaoTao(idCTDT) {
             const ctdtContainer = document.getElementById('ctdt'); // Lấy phần tử chứa chương trình đào tạo
 
             // Xóa nội dung hiện tại của cột Chương trình đào tạo (nếu có)
-            ctdtContainer.innerHTML = '';
+            // ctdtContainer.innerHTML = '';
 
             // Lặp qua danh sách phần đào tạo và hiển thị chúng
             data.forEach(phanDaoTao => {

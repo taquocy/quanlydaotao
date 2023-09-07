@@ -37,11 +37,34 @@
     </div>
     <div class="w-1/3 p-4" id="module" ondrop="drop(event)" ondragover="allowDrop(event)">
       <h2>Danh sách Modules</h2>
+        <!-- Nút "Thêm Module" -->
+        <button id="addModuleButton">Thêm Module</button>
+         <!-- Form tạo Module -->
+          <div id="moduleForm">
+            <h2>Tạo Module</h2>
+            <form id="createModuleForm">
+              <label for="tenModule">Tên Module:</label>
+              <input type="text" id="tenModule" name="tenModule" required><br><br>
+
+              <button type="submit" id="saveButton">Lưu</button>
+              <button type="button" id="cancelButton">Hủy</button>
+            </form>
+          </div>
       <!-- Các phần tử module sẽ được thêm vào đây -->
     </div>
     <div class="w-1/3 p-4" id="ctdt" ondrop="drop(event)" ondragover="allowDrop(event)">
       <h2>Khung CTDT</h2>
+      <button id="addSectionButton">Thêm mới Section</button>
+      <div id="createSectionForm" ></div>
+        <h2>Tạo mới Section</h2>
+        <form id="sectionForm" >
+            <label for="sectionName">Tên Section:</label>
+            <input type="text" id="sectionName" name="sectionName" required><br><br>
+            <button type="submit">Lưu</button>
+            <button type="button" id="cancelButtonSection">Hủy</button>
+        </form>    
       <!-- Các phần tử CTDT sẽ được thêm vào đây -->
+      
     </div>
   </div>
   
