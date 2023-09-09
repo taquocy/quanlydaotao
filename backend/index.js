@@ -226,3 +226,5 @@ app.post('/api/createNewPhanDaoTao/:id', (req, res) => {
     }
   });
 });
+
+app.listen(port)
